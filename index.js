@@ -1,9 +1,10 @@
-var { app } = require("./src/app");
-var CloudMessaging = require("./src/api/CloudMessaging");
+const { app } = require("./src/app");
+const locations = require("./src/api/Locations");
+const fs = require("fs");
 
-
-app.use("/notification", CloudMessaging);
+app.use("/locations", locations);
 
 app.get("/", (req, res) => {
-   res.send("Hirme's server with firebase.");
+   res.writeHead(200, { "content-type": "text/html" });
+   fs.createReadStream("./src/app.html").pipe(res);
 });

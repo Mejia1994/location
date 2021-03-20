@@ -3,21 +3,24 @@ const express = require("express");
 const app = express();
 const firebase = require("firebase-admin");
 const serviceAccount = require("./api/location-1e64d-firebase-adminsdk-nkk69-6865c2a5e6.json");
+var bodyParser = require('body-parser');
 
 let firebaseConfig = {
-   apiKey: "AIzaSyDpQTmVVZUqGxzV1CYRLM6ip-ewV8v_Jr4",
-   authDomain: "location-1e64d.firebaseapp.com",
-   projectId: "location-1e64d",
-   storageBucket: "location-1e64d.appspot.com",
-   messagingSenderId: "138766667523",
-   appId: "1:138766667523:web:3f3df58ae49354c3fba336",
-   measurementId: "G-3NE8EBJYD5",
+   apiKey: "AIzaSyA3HfgjlWGJJgPgEpMeh1iz9gjlwHelGrY",
+   authDomain: "locations-2559.firebaseapp.com",
+   projectId: "locations-2559",
+   storageBucket: "locations-2559.appspot.com",
+   messagingSenderId: "843967978417",
+   appId: "1:843967978417:web:29657bb7dd2745652c7b90",
+   measurementId: "G-N1HEX4TFQ8",
 };
 
 firebase.initializeApp({
    credential: firebase.credential.cert(serviceAccount),
    ...firebaseConfig,
 });
+
+app.use(bodyParser.json());
 
 app.listen(PORT, () => {
    console.log(`Example app listening at port ${PORT}`);
