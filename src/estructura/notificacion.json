@@ -2,5 +2,6 @@
     "titulo": null,
     "mensaje": null,
     "from": "+50525590",
-    "to": "+50586188918"
+    "to": "+50586188918",
+    "tipo": "incoming"
 }

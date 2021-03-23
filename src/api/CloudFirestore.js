@@ -1,8 +1,9 @@
 const { fireStore } = require("../app");
-const usuariosRef = fireStore.collection("Usuarios");
 
 const obtenerUserData = async function (numeroAcceso) {
    return new Promise(function (resolve, reject) {
+      const usuariosRef = fireStore.collection("Usuarios");
+
       usuariosRef
          .doc(numeroAcceso)
          .get()
@@ -16,11 +17,12 @@ const obtenerUserData = async function (numeroAcceso) {
 const guardarNotificaciones = function (params) {
    return new Promise(function (resolve, reject) {
       try {
-         usuariosRef
-            .doc(params.to)
-            .collection("incomingNotification")
+         let referencia = fireStore.collection(params.to);
+
+         referencia
             .doc(params.from)
             .set({
+               tipo: params.tipo,
                titulo: params.titulo,
                mensaje: params.mensaje,
             })

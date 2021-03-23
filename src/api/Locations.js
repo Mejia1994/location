@@ -8,7 +8,7 @@ router.get("/", function (req, res) {
 });
 
 router.post("/", async function (req, res) {
-   let { to, from, titulo, mensaje } = req.body;
+   let { to, from, titulo, mensaje, tipo } = req.body;
 
    try {
       let toData = await obtenerUserData(to);
@@ -16,9 +16,10 @@ router.post("/", async function (req, res) {
       let data = {
          to,
          from,
+         tipo,
          token: toData.TokenMsg,
          titulo: titulo || "Solicitud de ubicacion",
-         mensaje: mensaje || `${to} solicita que le compartas tu ubicacion`,
+         mensaje: mensaje || `${from} solicita que le compartas tu ubicacion`,
       };
 
       let notificationResponse = await guardarNotificaciones(data);
